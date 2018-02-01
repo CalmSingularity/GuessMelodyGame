@@ -5,14 +5,17 @@ using Microsoft.Win32;
 
 namespace GuessMelody
 {
-	static class AppData
+	static class GameData
 	{
 		static public List<string> songList = new List<string>();
 		static public int gameDuration = 60;
 		static public int musicDuration = 10;
+		static public int timeToAnswer = 3;
 		static public bool randomStart = false;
 		static public string lastFolder = "";
 		static public bool allDirectories = true;
+
+		static public string player1Name = "Игрок 1", player2Name = "Игрок 2";
 
 		static public void ReadMusicList()
 		{
@@ -39,6 +42,7 @@ namespace GuessMelody
 				registryKey.SetValue("RandomStart", randomStart);
 				registryKey.SetValue("GameDuration", gameDuration);
 				registryKey.SetValue("MusicDuration", musicDuration);
+				registryKey.SetValue("TimeToAnswer", timeToAnswer);
 				registryKey.SetValue("AllDirectories", allDirectories);
 			}
 			finally
@@ -62,6 +66,7 @@ namespace GuessMelody
 					randomStart = Convert.ToBoolean(registryKey.GetValue("RandomStart", true));
 					gameDuration = (int)registryKey.GetValue("GameDuration");
 					musicDuration = (int)registryKey.GetValue("MusicDuration");
+					timeToAnswer = (int)registryKey.GetValue("TimeToAnswer");
 					allDirectories = Convert.ToBoolean(registryKey.GetValue("AllDirectories", true));
 				}
 

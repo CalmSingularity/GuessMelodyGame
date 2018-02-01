@@ -13,11 +13,11 @@ namespace GuessMelody
 
 		private void buttonOK_Click(object sender, EventArgs e)
 		{
-			AppData.allDirectories = checkBoxAllDirs.Checked;
-			AppData.gameDuration = Convert.ToInt32(comboBoxGameDuration.Text);
-			AppData.musicDuration = Convert.ToInt32(comboBoxMusicDuration.Text);
-			AppData.randomStart = checkBoxRandomStart.Checked;
-			AppData.WritePreferences();
+			GameData.allDirectories = checkBoxAllDirs.Checked;
+			GameData.gameDuration = Convert.ToInt32(comboBoxGameDuration.Text);
+			GameData.musicDuration = Convert.ToInt32(comboBoxMusicDuration.Text);
+			GameData.randomStart = checkBoxRandomStart.Checked;
+			GameData.WritePreferences();
 			this.Hide();
 		}
 
@@ -29,11 +29,11 @@ namespace GuessMelody
 
 		void RefreshForm()
 		{
-			checkBoxAllDirs.Checked = AppData.allDirectories;
-			comboBoxGameDuration.Text = AppData.gameDuration.ToString();
-			comboBoxMusicDuration.Text = AppData.musicDuration.ToString();
-			checkBoxRandomStart.Checked = AppData.randomStart;
-			string[] songList = Directory.GetFiles(AppData.lastFolder, "*.mp3",
+			checkBoxAllDirs.Checked = GameData.allDirectories;
+			comboBoxGameDuration.Text = GameData.gameDuration.ToString();
+			comboBoxMusicDuration.Text = GameData.musicDuration.ToString();
+			checkBoxRandomStart.Checked = GameData.randomStart;
+			string[] songList = Directory.GetFiles(GameData.lastFolder, "*.mp3",
 				checkBoxAllDirs.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
 			listBoxSongs.Items.Clear();
 			listBoxSongs.Items.AddRange(songList);
@@ -46,11 +46,11 @@ namespace GuessMelody
 			{
 				string[] songList = Directory.GetFiles(folderBrowserDialog.SelectedPath, "*.mp3", 
 					checkBoxAllDirs.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
-				AppData.lastFolder = folderBrowserDialog.SelectedPath;
+				GameData.lastFolder = folderBrowserDialog.SelectedPath;
 				listBoxSongs.Items.Clear();
 				listBoxSongs.Items.AddRange(songList);
-				AppData.songList.Clear();
-				AppData.songList.AddRange(songList);
+				GameData.songList.Clear();
+				GameData.songList.AddRange(songList);
 			}
 			
 		}

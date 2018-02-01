@@ -6,7 +6,6 @@ namespace GuessMelody
 	public partial class FormMain : Form
 	{
 		FormPreferences formPreferences = new FormPreferences();
-		FormGame formGame = new FormGame();
 
 		public FormMain()
 		{
@@ -15,8 +14,8 @@ namespace GuessMelody
 
 		private void FormMain_Load(object sender, EventArgs e)
 		{
-			AppData.ReadPreferences();
-			AppData.ReadMusicList();
+			GameData.ReadPreferences();
+			GameData.ReadMusicList();
 		}
 
 		private void buttonExit_Click(object sender, EventArgs e)
@@ -31,6 +30,7 @@ namespace GuessMelody
 
 		private void buttonPlay_Click(object sender, EventArgs e)
 		{
+			FormGame formGame = new FormGame();
 			formGame.ShowDialog();
 		}
 	}
